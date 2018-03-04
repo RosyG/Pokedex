@@ -1,0 +1,19 @@
+#btn-search {
+  background: linear-gradient(135deg, #45ad79, #00ff7f);
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+	letter-spacing: .01em;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 1.2em 2em;
+}
+
+
+#response-container {
+  list-style: none;
+  display: inline-block;
+}
