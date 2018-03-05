@@ -1,3 +1,4 @@
+
 const form = document.querySelector("#search");
 const namePoke = document.querySelector("#name-poke");
 const responseContainer = document.querySelector("#response-container");
@@ -6,23 +7,27 @@ let searchText;
 
 //const API_ENDPOINT_ALL_INF = "https://pokeapi.co/api/v2/pokedex/1/"; //Contiene la dirección de la API
 const API_ENDPOINT_ALL_INF = "https://pokeapi.co/api/v2/pokemon/"; //Contiene la dirección de la API
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  responseContainer.innerHTML='';
-  searchText = namePoke.value;
+const API_ENDPOINT_INDIVIDUAL_INF = "https://pokeapi.co/api/v2/pokemon-species/1/"; //Contiene la dirección de la API
+
+$(document).ready(function() {
   getAllPoke();
-})
+});
 
 
 function getAllPoke() {
-  //Función que se conecta a la API.
-  const allInfRequest = new XMLHttpRequest();
-  allInfRequest.open('GET', API_ENDPOINT_ALL_INF);
-  allInfRequest.onload = hadleSuccess;
-  allInfRequest.onerror = hadlError;
-  allInfRequest.send();//Envío de petición.
+  fetch("https://pokeapi.co/api/v2/pokemon/").
+  then(response => {
+    //En la primera promesa se tiene la respuesta del API
+    response.json().
+    then(data => {
+      painPokemon(data)
+      console.log('exito de petición');
+    })
+  });//Fin del uso de fetch.
+
 }
 
+/*
 function hadleSuccess(){
   console.log("this.responseText");
   let dataPoke = JSON.parse(this.responseText);
@@ -33,6 +38,7 @@ function hadlError(){
     alert('Ooooops!')
 }
 
+*/
 function painPokemon(data) {
   let name = '';
   let src ='';
